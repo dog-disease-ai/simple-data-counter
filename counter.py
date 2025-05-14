@@ -36,16 +36,16 @@ class InfluxDBVitalCounter(SimpleCounter):
         :param count: The expected count of records.
         :return: Whether count of records is matched with datasource.
         """
-        query_result = self.client.query_api().query(
-            self._build_query(
-                bucket="cotons_vet",
-                start=start,
-                stop=end,
-                measurement="vital",
-                field="status",
-                device_user_id=id,
-            )
+        query = self._build_query(
+            bucket="cotons_vet",
+            start=start,
+            stop=end,
+            measurement="vital",
+            field="status",
+            device_user_id=id,
         )
+        print(f"Query: {query}")
+        query_result = self.client.query_api().query(query)
 
         if len(query_result) == 0:
             print("No data found in the given time range.")
@@ -110,17 +110,17 @@ class InfluxDBDeviceStatusCounter(SimpleCounter):
         :param count: The expected count of records.
         :return: Whether count of records is matched with datasource.
         """
-        query_result = self.client.query_api().query(
-            self._build_query(
-                bucket="cotons_vet",
-                start=start,
-                stop=end,
-                measurement="device_status",
-                field="battery",
-                device_type=id.deviceType,
-                device_id=id.deviceId,
-            )
+        query = self._build_query(
+            bucket="cotons_vet",
+            start=start,
+            stop=end,
+            measurement="device_status",
+            field="battery",
+            device_type=id.deviceType,
+            device_id=id.deviceId,
         )
+        print(f"Query: {query}")
+        query_result = self.client.query_api().query(query)
 
         if len(query_result) == 0:
             print("No data found in the given time range.")
@@ -146,7 +146,8 @@ class InfluxDBDeviceStatusCounter(SimpleCounter):
         :param stop: The stop time of the range. should be in 2025-05-13T18:30:59Z format.
         :param measurement: The measurement name.
         :param field: The field name.
-        :param device user ID: The device user ID.
+        :param device_type: The device type.
+        :param device_id: The device ID.
         :return: The Flux query string.
         """
         return f"""
