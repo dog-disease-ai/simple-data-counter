@@ -1,0 +1,6 @@
+[influx2]
+url=https://your-influxdb-url
+org=your-org
+token="your-token"
+timeout=6000
+verify_ssl=True
