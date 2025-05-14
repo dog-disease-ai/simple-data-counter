@@ -1,5 +1,6 @@
 import sys
 from file_parser import parse_output_file
+from core_api import get_device_user
 import subprocess
 import re
 
@@ -18,6 +19,12 @@ if __name__ == "__main__":
 
     # Parse output file to get parameters
     result = parse_output_file(output_file)
+
+    device_type = "2"  # TODO: Replace with actual device type
+    device_id = "1000200"  # TODO: Replace with actual device ID
+    # Get device user ID from core API
+    device_user_id = get_device_user(device_type, device_id).id
+
     # Call counter.py for vital
     vital_cmd = [
         "python3",

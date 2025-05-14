@@ -1,5 +1,6 @@
 # Ignore actual config file containing private data
 influxdb_config.ini
+core_api_config.ini
 
 # Do not ignore the template
-!influxdb_config.ini.template
+!*.template
