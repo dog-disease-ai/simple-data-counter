@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools >= 77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "simple-data-counter"
+version = "0.1.0"
+readme = {file = "README.md", content-type = "text/markdown"}
+description = "CLI tool to compare amount of InfluxDB records and sending count in given period."
+authors = [
+    { name = "msoh", email = "msoh@cotons.ai" }
+]
+requires-python = ">=3.7"
+dependencies = [
+    "influxdb-client",
+    "requests"
+]
+
+[project.scripts]
+simple-data-counter = "data_counter.main:main"
+
+[tool.setuptools.packages]
+find = {}  # Scanning implicit namespaces is active by default

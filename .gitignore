@@ -4,3 +4,8 @@ core_api_config.ini
 
 # Do not ignore the template
 !*.template
+
+/build
+/.venv
+*.egg-info
+*/__pycache__
